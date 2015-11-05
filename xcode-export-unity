@@ -1,0 +1,19 @@
+#!/bin/bash
+#-------------------------------------------------
+#功能：从unity导出xcode工程
+DEFINE_SYMBOL=""
+while getopts d: opt; do
+    case $opt in
+        d) DEFINE_SYMBOL="$OPTARG" ;;
+        \?) echo "Invalid param" ;;
+    esac
+done
+echo $DEFINE_SYMBOL
+
+UNITY_PATH="/Applications/Unity/Unity.app/Contents/MacOS/Unity"
+#工程路径
+PROJECT_PATH=$(pwd)
+echo "export xcode project started."
+#将unity导出成xcode工程#
+$UNITY_PATH -projectPath $PROJECT_PATH -batchmode -executeMethod OneKeyBuild.BuildIOS "sds:$DEFINE_SYMBOL" -quit -logFile "$PROJECT_PATH/export_xcode.log"
+echo "end."

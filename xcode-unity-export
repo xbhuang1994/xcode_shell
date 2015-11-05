@@ -1,9 +1,0 @@
-#!/bin/bash
-UNITY_PATH="/Applications/Unity/Unity.app/Contents/MacOS/Unity"
-#工程路径
-PROJECT_PATH=$(pwd)
-echo "$PROJECT_PATH/export.log" 
-echo "export xcode project started."
-#将unity导出成xcode工程#
-$UNITY_PATH -projectPath $PROJECT_PATH -batchmode -executeMethod OneKeyBuild.BuildIOS -quit -logFile "$PROJECT_PATH/build_xcode.log"
-echo "end."
