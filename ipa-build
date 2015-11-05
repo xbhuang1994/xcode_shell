@@ -243,6 +243,8 @@ displayName=$(/usr/libexec/PlistBuddy -c "print CFBundleDisplayName" ${app_infop
 #IPA名称
 ipa_name="${displayName}_${platform_id}_${bundleShortVersion}_${build_config}_${bundleVersion}_$(date +"%Y%m%d")"
 echo $ipa_name
+#防止在Iphone上得闪退
+/usr/libexec/PlistBuddy -c 'Set :UILaunchStoryboardName~iphone ""' ${app_infoplist_path}
 
 #xcrun打包
 xcrun -sdk iphoneos PackageApplication -v ./${appdirname}/*.app -o ${build_path}/ipa-build/${ipa_name}.ipa || exit
